@@ -4,11 +4,13 @@ import com.oocl.companymysql.entities.Company;
 import com.oocl.companymysql.services.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.transaction.Transactional;
+import java.util.List;
 
 @RestController
 public class CompanyController {
@@ -20,4 +22,11 @@ public class CompanyController {
     public Company addCompany(@RequestBody Company newCompany){
         return companyService.addCompany(newCompany);
     }
+
+    @Transactional
+    @GetMapping(path = "/companies",produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<Company> getCompanies(){
+        return companyService.getCompanies();
+    }
+
 }

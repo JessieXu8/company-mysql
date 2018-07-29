@@ -46,4 +46,17 @@ public class CompanyControllerTest {
                 .andExpect(status().is2xxSuccessful())
                 .andDo(print());
     }
+
+    @Test
+    public void should_return_all_companies_when_call_getCompanies() throws Exception{
+        ArrayList<Company> companies = new ArrayList<>();
+        Company company = new Company("alibaba","20");
+        companies.add(company);
+        given(companyService.getCompanies()).willReturn(companies);
+
+        mockMvc.perform(get("/companies")).andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].companyName").value("alibaba"))
+                .andExpect(jsonPath("$[0].employeesNumber").value("20"));
+
+    }
 }
