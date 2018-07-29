@@ -18,6 +18,7 @@ import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -94,5 +95,19 @@ public class EmployeeControllerTest {
                 .andExpect(jsonPath("$[0].age").value(20))
                 .andExpect(jsonPath("$[0].gender").value("male"))
                 .andExpect(jsonPath("$[0].salary").value(6000));
+    }
+
+    @Test
+    public void should_return_employee_when_call_delEmployee() throws Exception{
+        ArrayList<Employee> employees = new ArrayList<>();
+        Employee employee = new Employee("alibaba1", 20, "male", 6000);
+        employees.add(employee);
+        given(employeeService.delEmployee(any())).willReturn(employee);
+
+        mockMvc.perform(delete("/employees/1")).andExpect(status().isOk())
+                .andExpect(jsonPath("name").value("alibaba1"))
+                .andExpect(jsonPath("age").value(20))
+                .andExpect(jsonPath("gender").value("male"))
+                .andExpect(jsonPath("salary").value(6000));
     }
 }

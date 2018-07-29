@@ -27,4 +27,15 @@ public class EmployeeService {
     public List<Employee> findEmployeesByGender(String gender) {
         return employeeRepository.findByGender(gender);
     }
+
+    public Employee updateEmployee(Long id, Employee newEmployee) {
+        employeeRepository.findById(id).get();
+        return employeeRepository.save(newEmployee);
+    }
+
+    public Employee delEmployee(Long id) {
+        Employee employee = employeeRepository.findById(id).get();
+        employeeRepository.delete(employee);
+        return employee;
+    }
 }

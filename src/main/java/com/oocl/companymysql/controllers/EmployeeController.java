@@ -32,4 +32,14 @@ public class EmployeeController {
         String gender = "male";
         return employeeService.findEmployeesByGender(gender);
     }
+
+    @PutMapping("/employees/{id}")
+    public Employee updateEmployees(@PathVariable Long id,@RequestBody Employee newEmployee){
+        return employeeService.updateEmployee(id,newEmployee);
+    }
+
+    @DeleteMapping("/employees/{id}")
+    public Employee delEmployees(@PathVariable Long  id){
+        return employeeService.delEmployee(id);
+    }
 }
