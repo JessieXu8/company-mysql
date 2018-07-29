@@ -26,4 +26,10 @@ public class EmployeeController {
     public Employee findEmployeesById(@PathVariable Long id){
         return employeeService.findEmployeeById(id);
     }
+
+    @GetMapping("/employees/male")
+    public List<Employee> findEmployeesByGender(){
+        String gender = "male";
+        return employeeService.findEmployeesByGender(gender);
+    }
 }

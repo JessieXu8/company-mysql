@@ -23,4 +23,8 @@ public class EmployeeService {
     public Employee findEmployeeById(Long id) {
         return employeeRepository.findById(id).get();
     }
+
+    public List<Employee> findEmployeesByGender(String gender) {
+        return employeeRepository.findByGender(gender);
+    }
 }

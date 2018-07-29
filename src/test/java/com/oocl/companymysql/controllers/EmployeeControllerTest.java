@@ -75,4 +75,24 @@ public class EmployeeControllerTest {
                 .andExpect(jsonPath("gender").value("male"))
                 .andExpect(jsonPath("salary").value(6000));
     }
+    
+    @Test
+    public void should_return_employees_when_call_findByGender()throws Exception{
+        ArrayList<Employee> employees1 = new ArrayList<>();
+        ArrayList<Employee> employees2 = new ArrayList<>();
+        Employee employee1 = new Employee("alibaba1", 20, "female", 6000);
+        employees1.add(employee1);
+        Employee employee2 = new Employee("alibaba2", 20, "male", 6000);
+        employees1.add(employee2);
+        employees2.add(employee2);
+        given(employeeService.findEmployeesByGender(any())).willReturn(employees2);
+
+        mockMvc.perform(get("/employees/male"))
+
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0].name").value("alibaba2"))
+                .andExpect(jsonPath("$[0].age").value(20))
+                .andExpect(jsonPath("$[0].gender").value("male"))
+                .andExpect(jsonPath("$[0].salary").value(6000));
+    }
 }
