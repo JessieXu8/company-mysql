@@ -59,4 +59,18 @@ public class CompanyControllerTest {
                 .andExpect(jsonPath("$[0].employeesNumber").value("20"));
 
     }
+
+    @Test
+    public void should_return_company_when_call_findcompanyById() throws Exception{
+        ArrayList<Company> companies = new ArrayList<>();
+        Company company = new Company("alibaba","20");
+        companies.add(company);
+        given(companyService.getCompanyById(any())).willReturn(company);
+
+        mockMvc.perform(get("/companies/1"))
+
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("companyName").value("alibaba"))
+                .andExpect(jsonPath("employeesNumber").value("20"));
+    }
 }

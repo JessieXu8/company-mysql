@@ -4,10 +4,7 @@ import com.oocl.companymysql.entities.Company;
 import com.oocl.companymysql.services.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -27,6 +24,12 @@ public class CompanyController {
     @GetMapping(path = "/companies",produces = MediaType.APPLICATION_JSON_VALUE)
     public List<Company> getCompanies(){
         return companyService.getCompanies();
+    }
+
+    @Transactional
+    @GetMapping(path = "/companies/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public Company getCompanyById(@PathVariable Long id){
+        return companyService.getCompanyById(id);
     }
 
 }
