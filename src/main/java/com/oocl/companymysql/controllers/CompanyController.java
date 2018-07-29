@@ -4,6 +4,7 @@ import com.oocl.companymysql.entities.Company;
 import com.oocl.companymysql.entities.Employee;
 import com.oocl.companymysql.services.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
@@ -39,6 +40,9 @@ public class CompanyController {
         return companyService.getEmployeesOfCompanyById(id);
     }
 
-
+//    @GetMapping(value = "/employees",produces = MediaType.APPLICATION_JSON_VALUE)
+//    public List<Company> showCompaniesByPage(Pageable pageable){
+//        return companyService.showCompaniesByPage(pageable);
+//    }
 
 }

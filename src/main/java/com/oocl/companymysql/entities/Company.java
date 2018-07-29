@@ -9,33 +9,40 @@ import java.util.List;
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long companyId;
-    private String companyName;
-    private String employeesNumber;
+    private Long id;
+    private String name;
+    private String employeenumber;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "company", fetch = FetchType.LAZY)
     private List<Employee> employeesList = new ArrayList<>();
 
-    public Long getCompanyId() {
-        return companyId;
+    public Company(String name, String employeenumber) {
+        this.name = name;
+        this.employeenumber = employeenumber;
     }
 
-    public void setCompanyId(Long companyId) {
-        this.companyId = companyId;
+    public Long getId() {
+        return id;
     }
 
-    public String getCompanyName() {
-        return companyName;
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
+    public String getName() {
+        return name;
     }
 
-    public String getEmployeesNumber() {
-        return employeesNumber;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public void setEmployeesNumber(String employeesNumber) {
-        this.employeesNumber = employeesNumber;
+    public String getEmployeenumber() {
+        return employeenumber;
+    }
+
+    public void setEmployeenumber(String employeenumber) {
+        this.employeenumber = employeenumber;
     }
 
     public List<Employee> getEmployeesList() {
@@ -47,10 +54,5 @@ public class Company {
     }
 
     public Company() {
-    }
-
-    public Company(String companyName, String employeesNumber) {
-        this.companyName = companyName;
-        this.employeesNumber = employeesNumber;
     }
 }

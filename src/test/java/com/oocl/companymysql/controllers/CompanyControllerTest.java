@@ -57,8 +57,8 @@ public class CompanyControllerTest {
         given(companyService.getCompanies()).willReturn(companies);
 
         mockMvc.perform(get("/companies")).andExpect(status().isOk())
-                .andExpect(jsonPath("$[0].companyName").value("alibaba"))
-                .andExpect(jsonPath("$[0].employeesNumber").value("20"));
+                .andExpect(jsonPath("$[0].name").value("alibaba"))
+                .andExpect(jsonPath("$[0].employeenumber").value("20"));
 
     }
 
@@ -72,8 +72,8 @@ public class CompanyControllerTest {
         mockMvc.perform(get("/companies/1"))
 
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("companyName").value("alibaba"))
-                .andExpect(jsonPath("employeesNumber").value("20"));
+                .andExpect(jsonPath("name").value("alibaba"))
+                .andExpect(jsonPath("employeenumber").value("20"));
     }
 
     @Test

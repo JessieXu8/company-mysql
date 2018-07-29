@@ -3,5 +3,6 @@ CREATE TABLE `employee` (
   `name` varchar(200) NOT NULL,
   `age` int ,
   `gender` varchar(20),
-  `salary` int
+  `salary` int,
+  `company_id` BIGINT
 );

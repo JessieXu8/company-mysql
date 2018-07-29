@@ -52,9 +52,9 @@ public class EmployeeController {
         return employeeService.delEmployee(id);
     }
 
-    @Transactional
-    @GetMapping(value = "/employees",produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<Employee> showEmployeesByPage(Pageable pageable){
-        return employeeService.showEmployeesByPage(pageable);
-    }
+//    @Transactional
+//    @GetMapping(value = "/employees",produces = MediaType.APPLICATION_JSON_VALUE)
+//    public List<Employee> showEmployeesByPage(Pageable pageable){
+//        return employeeService.showEmployeesByPage(pageable);
+//    }
 }

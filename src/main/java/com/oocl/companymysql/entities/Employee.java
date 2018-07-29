@@ -1,5 +1,7 @@
 package com.oocl.companymysql.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 @Entity
@@ -16,6 +18,19 @@ public class Employee {
     private String gender;
 
     private int salary;
+
+    @JsonIgnore
+    @ManyToOne(fetch= FetchType.LAZY)
+    @JoinColumn(name = "company_id")
+    private Company company;
+
+    public Company getCompany() {
+        return company;
+    }
+
+    public void setCompany(Company company) {
+        this.company = company;
+    }
 
     public Long getId() {
         return id;
