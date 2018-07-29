@@ -8,6 +8,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -110,4 +113,19 @@ public class EmployeeControllerTest {
                 .andExpect(jsonPath("gender").value("male"))
                 .andExpect(jsonPath("salary").value(6000));
     }
+    
+//    @Test
+//    public void should_return_employees_by_page_when_call_showEmployeesByPage() throws Exception{
+//        ArrayList<Employee> employees = new ArrayList<>();
+//        Employee employee = new Employee("alibaba1", 20, "male", 6000);
+//        employees.add(employee);
+//        Pageable pageable = new PageRequest(0,3);
+//        given(employeeService.showEmployeesByPage(any())).willReturn(employees);
+//
+//        mockMvc.perform(get("/employees/pageable")).andExpect(status().isOk())
+//                .andExpect(jsonPath("name").value("alibaba1"))
+//                .andExpect(jsonPath("age").value(20))
+//                .andExpect(jsonPath("gender").value("male"))
+//                .andExpect(jsonPath("salary").value(6000));
+//    }
 }

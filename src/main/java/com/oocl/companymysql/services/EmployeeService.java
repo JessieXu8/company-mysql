@@ -3,7 +3,10 @@ package com.oocl.companymysql.services;
 import com.oocl.companymysql.entities.Employee;
 import com.oocl.companymysql.repositories.EmployeeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+
 
 import java.util.List;
 
@@ -37,5 +40,10 @@ public class EmployeeService {
         Employee employee = employeeRepository.findById(id).get();
         employeeRepository.delete(employee);
         return employee;
+    }
+
+    public List<Employee> showEmployeesByPage(Pageable pageable) {
+        Page<Employee> employeesList = employeeRepository.findAll(pageable);
+        return employeesList.getContent();
     }
 }

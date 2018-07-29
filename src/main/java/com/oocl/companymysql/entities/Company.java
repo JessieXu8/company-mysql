@@ -34,4 +34,12 @@ public class Company {
     public void setEmployeesNumber(String employeesNumber) {
         this.employeesNumber = employeesNumber;
     }
+
+    public Company() {
+    }
+
+    public Company(String companyName, String employeesNumber) {
+        this.companyName = companyName;
+        this.employeesNumber = employeesNumber;
+    }
 }
