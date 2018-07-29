@@ -1,6 +1,7 @@
 package com.oocl.companymysql.services;
 
 import com.oocl.companymysql.entities.Company;
+import com.oocl.companymysql.entities.Employee;
 import com.oocl.companymysql.repositories.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,5 +23,9 @@ public class CompanyService {
 
     public Company getCompanyById(Long id) {
         return companyRepository.findById(id).get();
+    }
+
+    public List<Employee> getEmployeesOfCompanyById(Long id) {
+        return companyRepository.findByEmployeesList(id);
     }
 }

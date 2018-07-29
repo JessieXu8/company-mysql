@@ -14,9 +14,11 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.Assert.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -72,5 +74,18 @@ public class CompanyControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("companyName").value("alibaba"))
                 .andExpect(jsonPath("employeesNumber").value("20"));
+    }
+
+    @Test
+    public void should_return_employees_when_call_findByEmployeesList()throws Exception{
+        ArrayList<Company> companies = new ArrayList<>();
+        Company company = new Company("alibaba","20");
+        Employee employee = new Employee("alibaba1", 20, "female", 6000);
+        company.getEmployeesList().add(employee);
+        companies.add(company);
+        given(companyService.getEmployeesOfCompanyById(anyLong())).willReturn(company.getEmployeesList());
+
+        mockMvc.perform(get("/companies/1/employees"))
+                .andExpect(jsonPath("$[0].name").value("alibaba1"));
     }
 }

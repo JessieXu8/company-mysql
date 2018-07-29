@@ -1,6 +1,7 @@
 package com.oocl.companymysql.entities;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -11,7 +12,7 @@ public class Company {
     private Long companyId;
     private String companyName;
     private String employeesNumber;
-    private List<Employee> employeesList;
+    private List<Employee> employeesList = new ArrayList<>();
 
     public Long getCompanyId() {
         return companyId;

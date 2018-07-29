@@ -1,6 +1,7 @@
 package com.oocl.companymysql.controllers;
 
 import com.oocl.companymysql.entities.Company;
+import com.oocl.companymysql.entities.Employee;
 import com.oocl.companymysql.services.CompanyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -31,5 +32,13 @@ public class CompanyController {
     public Company getCompanyById(@PathVariable Long id){
         return companyService.getCompanyById(id);
     }
+
+    @Transactional
+    @GetMapping("/companies/{id}/employees")
+    public List<Employee> getEmployeesOfCompanyById(@PathVariable Long id){
+        return companyService.getEmployeesOfCompanyById(id);
+    }
+
+
 
 }
