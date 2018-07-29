@@ -37,7 +37,7 @@ public class EmployeeControllerTest {
     private EmployeeService employeeService;
 
     @Test
-    public void getEmployee_ReturnEmployeeDetails() throws Exception {
+    public void should_ReturnEmployeeDetails_when_call_getEmployee() throws Exception {
         ArrayList<Employee> employees = new ArrayList<>();
         Employee employee = new Employee("alibaba1", 20, "male", 6000);
         employees.add(employee);
@@ -58,5 +58,21 @@ public class EmployeeControllerTest {
                 .content(mapper.writeValueAsString(employee)))
                 .andExpect(status().is2xxSuccessful())
                 .andDo(print());
+    }
+
+    @Test
+    public void should_return_employee_when_call_findEmployeesById() throws Exception{
+        ArrayList<Employee> employees = new ArrayList<>();
+        Employee employee = new Employee("alibaba1", 20, "male", 6000);
+        employees.add(employee);
+        given(employeeService.findEmployeeById(any())).willReturn(employee);
+
+        mockMvc.perform(get("/employees/1"))
+
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("name").value("alibaba1"))
+                .andExpect(jsonPath("age").value(20))
+                .andExpect(jsonPath("gender").value("male"))
+                .andExpect(jsonPath("salary").value(6000));
     }
 }

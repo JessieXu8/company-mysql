@@ -3,10 +3,7 @@ package com.oocl.companymysql.controllers;
 import com.oocl.companymysql.entities.Employee;
 import com.oocl.companymysql.services.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,5 +20,10 @@ public class EmployeeController {
     @GetMapping("/employees")
     public List<Employee> getEmployees(){
         return employeeService.getEmployees();
+    }
+
+    @GetMapping("/employees/{id}")
+    public Employee findEmployeesById(@PathVariable Long id){
+        return employeeService.findEmployeeById(id);
     }
 }
